@@ -39,19 +39,28 @@ nav ul a:hover{color:var(--ink)}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
 nav .btn{padding:8px 18px;font-size:14px}
 
-/* hero */
-.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;color:#fff;padding:0}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,15,10,.1) 30%,rgba(20,15,10,.78))}
-.hero .wrap{position:relative;z-index:1;padding-bottom:64px;width:100%}
-.tag{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);padding:4px 14px;border-radius:999px;font-size:14px;margin-bottom:18px}
-.hero h1{font-family:var(--serif);font-size:clamp(34px,6.5vw,64px);line-height:1.2;margin-bottom:12px}
-.hero p{font-size:clamp(16px,2.2vw,20px);opacity:.92;max-width:620px}
-.price{margin-top:26px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.price b{font-family:var(--serif);font-size:clamp(40px,7vw,60px)}
-.price span{font-size:18px}
-.hero .actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
-.hero .btn.ghost{color:#fff;border-color:#fff}
+/* hero：左文右圖 */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);min-height:calc(100vh - 58px);background:var(--bg)}
+.hero-text{display:flex;flex-direction:column;justify-content:center;padding:56px clamp(20px,5vw,72px)}
+.tag{display:inline-block;align-self:flex-start;background:var(--accent-soft);color:var(--accent);padding:5px 14px;border-radius:999px;font-size:14px;font-weight:700;margin-bottom:22px}
+.hero h1{font-family:var(--serif);font-size:clamp(34px,4.6vw,58px);line-height:1.25;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:clamp(16px,1.4vw,18px);color:var(--muted)}
+.price{margin-top:28px;padding-top:22px;border-top:1px solid var(--line);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.price small{width:100%;font-size:13px;letter-spacing:.15em;color:var(--muted)}
+.price b{font-family:var(--serif);font-size:clamp(44px,5vw,64px);line-height:1;color:var(--ink)}
+.price span{font-size:18px;color:var(--muted)}
+.hero .actions{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.hero-pics{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:3fr 2fr;gap:8px;padding:8px 8px 8px 0}
+.hero-pics figure{position:relative;overflow:hidden;border-radius:14px;background:#ddd}
+.hero-pics figure:first-child{grid-column:1/-1}
+.hero-pics img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-pics span{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.55);color:#fff;font-size:13px;padding:3px 12px;border-radius:999px}
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-text{padding:40px 20px 32px}
+  .hero-pics{height:78vw;padding:0 12px 12px}
+}
 
 /* facts strip */
 .facts{background:var(--paper);border-bottom:1px solid var(--line);padding:0}
@@ -157,18 +166,22 @@ footer{padding:28px 0 90px;text-align:center;color:var(--muted);font-size:13px}
   </div>
 </nav>
 
-<!-- ① 首頁大圖：01-living.jpg -->
+<!-- ① 首頁：左邊文字，右邊三張照片（01-living / street-starbucks-711 / 04-master-bedroom） -->
 <header class="hero" id="top">
-  <img src="01-living.jpg" alt="客廳">
-  <div class="wrap">
+  <div class="hero-text">
     <span class="tag">台中市西區・誠售</span>
-    <h1>勝美術一期<br>優質三大正房</h1>
+    <h1>勝美術一期<br><em>優質三大正房</em></h1>
     <p>200 多戶組成單純・24 小時物業管理<br>下樓就是星巴克，散步就到土庫里。</p>
-    <div class="price"><b>1,738</b><span>萬元</span></div>
+    <div class="price"><small>總價</small><b>1,738</b><span>萬元</span></div>
     <div class="actions">
       <a class="btn" href="#contact">預約看屋</a>
       <a class="btn ghost" href="#life">先看生活機能 ↓</a>
     </div>
+  </div>
+  <div class="hero-pics">
+    <figure><img src="01-living.jpg" alt="客廳"><span>客廳</span></figure>
+    <figure><img src="street-starbucks-711.jpg" alt="社區外觀，一樓星巴克與 7-11"><span>樓下星巴克・7-11</span></figure>
+    <figure><img src="04-master-bedroom.jpg" alt="主臥"><span>主臥</span></figure>
   </div>
 </header>
 
